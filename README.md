@@ -26,6 +26,7 @@ To use FinAi on your machine you can …
 
 
 Or you can just click on [this link](https://8nmmvvfycnsafgwzbxmfe3.streamlit.app/) to use it on the web.
+You can also access the project pitch in the pitch folder.
 
 ## Problem Statement:
 Managing finances can be a daunting task for many individuals and businesses. The lack of a user-friendly and personalized solution often results in financial stress, confusion, and missed opportunities. There is a need for a comprehensive, multilingual financial assistant that simplifies the complexities of personal finance, making it accessible to a global audience.
@@ -49,7 +50,6 @@ Managing finances can be a daunting task for many individuals and businesses. Th
 - Financial and legal documents through retrieval
 
 ## Key Features:
-
 ### Chat-based Interface:
 Engage in natural conversations with FinAi to get financial advice and insights.
 ### Calculations and Analysis:

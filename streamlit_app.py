@@ -16,7 +16,7 @@ with st.sidebar:
 
     """
     "---"
-    "Pour les juges de la compétition GenAI, nous avons fourni une clé API dans le formulaire que nous vous avons envoyé."
+    "For GenAI competition judges, we have provided an API key in the form we sent you. You can also see an example conversation in the right side."
     openai_api_key = st.text_input("Mettez votre clé API OpenAI ici :", key="chatbot_api_key", type="password")
     "[View the source code](https://github.com/eniafou/FinAi/blob/main/streamlit_app.py)"
     "---"
