@@ -9,13 +9,14 @@ avatar_dic = {"assistant": logo_image, "user": "🧑‍🦱"}
 
 # the sidebar
 with st.sidebar:
-    st.image(logo_image, caption='Your Logo', use_column_width=True)
+    st.image(logo_image, use_column_width=True)
     """
     ## À propos de la FinAi
     FinAi est un assistant financier qui aide les utilisateurs à prendre de meilleures décisions financières. Il peut donner des conseils, calculer, générer des états financiers et des fichiers Excel.
 
     """
-
+    "---"
+    "Pour les juges de la compétition GenAI, nous avons fourni une clé API dans le formulaire que nous vous avons envoyé."
     openai_api_key = st.text_input("Mettez votre clé API OpenAI ici :", key="chatbot_api_key", type="password")
     "[View the source code](https://github.com/eniafou/FinAi/blob/main/streamlit_app.py)"
     "---"
@@ -85,12 +86,7 @@ if 'message_file' not in st.session_state:
 
         
 
-if prompt := st.chat_input():
-    # if not openai_api_key:
-    #     st.info("Please add your OpenAI API key to continue.")
-    #     st.stop()
-    
-    
+if prompt := st.chat_input(): 
     if uploaded_file:
         st.session_state.message_file = client.files.create(
             file= uploaded_file,

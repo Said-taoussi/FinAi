@@ -12,7 +12,7 @@
 - [Key Features](#Key-Features)
 
 ## About the project 
-FinAi est un assistant financier qui aide les utilisateurs à prendre de meilleures décisions financières. Il peut donner des conseils, calculer, générer des états financiers et des fichiers Excel.
+FinAi is a financial assistant that helps users make better financial decisions. It can advise, calculate, generate financial statements and Excel files.
 
 ## Team
 - [Soufiane Ait El Aouad](https://www.linkedin.com/in/soufiane-ait-el-aouad/)
@@ -45,8 +45,8 @@ Managing finances can be a daunting task for many individuals and businesses. Th
 ## Data Types and Sources:
 - Financial transaction data provided by users (with user consent).
 - Financial news data from reputable sources (Browsing).
-- Historical financial data for analysis and fine tuning.
 - User preferences and interaction history for a personalized experience.
+- Financial and legal documents through retrieval
 
 ## Key Features:
 
@@ -66,8 +66,3 @@ Stay informed with the latest financial news and updates directly within the Fin
 FinAi remembers user history; it creates a profile of the user where it puts the information gathered during the different chat sessions.
 ### File Generation:
 Generate Excel files on-demand, facilitating collaboration and data sharing.
-
-
-## Credits
-We gratefully acknowledge the contributions of StocksMA, whose package facilitates access to financial and economic data for Moroccan stocks.
-link of the github [this link](https://github.com/s0v1x/StocksMA) 
