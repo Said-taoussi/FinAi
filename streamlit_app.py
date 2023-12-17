@@ -2,25 +2,28 @@ from openai import OpenAI
 import streamlit as st
 
 
-avatar_dic = {"assistant": "🤖", "user": "🧑‍🦱"}
 
+logo_path = 'logo.jpeg'
+logo_image = open(logo_path, 'rb').read()
+avatar_dic = {"assistant": logo_image, "user": "🧑‍🦱"}
 
 # the sidebar
 with st.sidebar:
+    st.image(logo_image, caption='Your Logo', use_column_width=True)
     """
-    ## About the FinAI
-    FinApp is ...
+    ## À propos de la FinAi
+    FinAi est un assistant financier qui aide les utilisateurs à prendre de meilleures décisions financières. Il peut donner des conseils, calculer, générer des états financiers et des fichiers Excel.
 
     """
 
-    openai_api_key = st.text_input("Put your OpenAI API Key here :", key="chatbot_api_key", type="password")
+    openai_api_key = st.text_input("Mettez votre clé API OpenAI ici :", key="chatbot_api_key", type="password")
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "---"
-    uploaded_file = st.file_uploader("Upload a file", type=("c", "cpp", "docx", "html", "java", "json", "md", "pdf", "php", "pptx", "py", "py", "rb", "tex", "txt"))
+    uploaded_file = st.file_uploader("Donnez un fichier à FinAi :", type=("c", "cpp", "csv", "docx", "html", "java", "json", "md", "pdf", "php", "pptx", "py", "py", "rb", "tex", "txt", "css", "jpeg", "jpg", "js", "gif", "png", "tar", "ts", "xlsx", "xml", "zip"))
 
 
 if not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.")
+    st.info("Veuillez ajouter votre clé API OpenAI pour continuer.")
     st.stop()
 
 @st.cache_data
@@ -30,8 +33,8 @@ def initialize():
     assistant_id = "asst_Sqa1ly27CcP2oPrySxMTkXSU"
     return assistant_id, thread_id
 
-st.title("💵 FinAI")
-st.caption("Your personal financial assistant")
+st.title("FinAi")
+st.caption("Votre assistant financier personnel")
 
 
 assistant_id, thread_id = initialize()
