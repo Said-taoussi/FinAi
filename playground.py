@@ -102,3 +102,56 @@ with view_messages:
     Contents of `st.session_state.langchain_messages`:
     """
     view_messages.json(st.session_state.langchain_messages)
+
+
+
+"""
+
+import streamlit as st
+import requests
+from io import BytesIO
+from PIL import Image
+
+# Assuming you have an OpenAI API key
+OPENAI_API_KEY = 'your_openai_api_key'
+
+# Function to retrieve file content from OpenAI
+def get_file_content(file_id):
+    url = f'https://api.openai.com/v1/files/{file_id}/content'
+    headers = {'Authorization': f'Bearer {OPENAI_API_KEY}'}
+    response = requests.get(url, headers=headers)
+    return response.content
+
+# Streamlit app
+def main():
+    st.title("OpenAI File Download Example")
+
+    # User input for file ID
+    file_id = st.text_input("Enter OpenAI File ID:")
+
+    if st.button("Download File"):
+        try:
+            # Retrieve file content
+            file_content = get_file_content(file_id)
+
+            # Display file headers (you may customize this part based on OpenAI response format)
+            st.write("File Headers:")
+            st.write(str(file_content)[:500])  # Displaying a portion of the content as headers
+
+            # Save file locally (assuming it's an image in this example)
+            image = Image.open(BytesIO(file_content))
+            st.image(image, caption='Downloaded Image', use_column_width=True)
+
+            # Save the file locally (you can adapt this based on the actual file type)
+            with open(f'file-{file_id}.png', 'wb') as f:
+                f.write(file_content)
+
+            st.success(f"File saved locally as file-{file_id}.png")
+
+        except Exception as e:
+            st.error(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
+
+"""

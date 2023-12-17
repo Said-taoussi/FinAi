@@ -42,16 +42,57 @@ assistant_id, thread_id = initialize()
 client = OpenAI(api_key=openai_api_key)
 messages = client.beta.threads.messages.list(thread_id=thread_id)
 
+# def deal_with_annotations(message):
+#     message_content = message.content[0].text
+#     annotations = message_content.annotations
+#     citations = []
 
+#     # Iterate over the annotations and add footnotes
+#     for index, annotation in enumerate(annotations):
+#         # Replace the text with a footnote
+#         message_content.value = message_content.value.replace(annotation.text, f' [{index}]')
+
+#         # Gather citations based on annotation attributes
+#         if (file_citation := getattr(annotation, 'file_citation', None)):
+#             cited_file = client.files.retrieve(file_citation.file_id)
+#             citations.append(f'[{index}] {file_citation.quote} from {cited_file.filename}')
+#         # elif (file_path := getattr(annotation, 'file_path', None)):
+#         #     cited_file = client.files.retrieve(file_path.file_id)
+#         #     citations.append(f'[{index}] Click <here> to download {cited_file.filename}')
+#         #     # Note: File download functionality not implemented above for brevity
+
+
+#     message_content.value += '\n' + '\n'.join(citations)
 
 for msg in messages.data[::-1]:
-    st.chat_message(msg.role, avatar = avatar_dic[msg.role]).write(msg.content[0].text.value)
+    if msg.role == "user":
+        st.chat_message(msg.role, avatar = avatar_dic[msg.role]).write(msg.content[0].text.value)
+    else:
+        with st.chat_message("assistant", avatar = avatar_dic["assistant"]):
+            for content in msg.content:
+                if content.type =="image_file":
+                    image_data = client.files.content(content.image_file.file_id)
+                    image_data_bytes = image_data.read()
+                    st.image(image_data_bytes, caption='Image', use_column_width=True)
+                elif content.type =="text":
+                    st.write(content.text.value)
 
 if 'message_file' not in st.session_state:
     st.session_state.message_file = None
 
 
- 
+# Text files
+
+text_contents = '''
+Foo, Bar
+123, 456
+789, 000
+'''
+
+# Different ways to use the API
+
+st.download_button('Download CSV', text_contents, 'text/csv')
+st.download_button('anotheroe', text_contents, 'text/csv')
         
 
 if prompt := st.chat_input():
@@ -84,7 +125,9 @@ if prompt := st.chat_input():
         thread_id=thread_id,
         assistant_id=assistant_id,
     )
-    
+
+    st.chat_message("user", avatar = avatar_dic["user"]).write(prompt)
+
     while True:
         run_status = client.beta.threads.runs.retrieve(
             thread_id=thread_id,
@@ -92,9 +135,21 @@ if prompt := st.chat_input():
         )
         if run_status.status == 'completed':
             messages = client.beta.threads.messages.list(thread_id=thread_id)
-            response_msg = messages.data[0].content[0].text.value
+            message = messages.data[0]
+            with st.chat_message("assistant", avatar = avatar_dic["assistant"]):
+                for content in message.content:
+                    if content.type == "image_file":
+                        image_data = client.files.content(content.image_file.file_id)
+                        image_data_bytes = image_data.read()
+                        st.image(image_data_bytes, caption='Image', use_column_width=True)
+                    elif content.type == "text":
+                        st.write(content.text.value)
+            
             break
 
     
-    st.chat_message("user", avatar = avatar_dic["user"]).write(prompt)
-    st.chat_message("assistant", avatar = avatar_dic["assistant"]).write(response_msg)
+    
+    
+
+
+
