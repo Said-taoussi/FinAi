@@ -11,7 +11,7 @@
 - [Key Features](#Key-Features)
 
 ## About the project 
-FinAi is a financial assistant that helps users make better financial decisions. It can advise, calculate, generate financial statements and Excel files.
+FinAi is a financial assistant that helps users with thier financial life. It can advise, calculate relevant financial formulas, generate financial statements and Excel files. It can be used by both professionals aiming at increasing their productivity, and also by normal users who just want to make better financial decisions. FinAi is multilingual and can speak in Darija, French and English, making it accessible for the typical Moroccan user.
 
 ## Team
 - [Soufiane Ait El Aouad](https://www.linkedin.com/in/soufiane-ait-el-aouad/)
@@ -25,7 +25,8 @@ To use FinAi on your machine you can …
 
 
 Or you can just click on [this link](https://8nmmvvfycnsafgwzbxmfe3.streamlit.app/) to use it on the web.
-You can also access the project pitch in the pitch folder.
+
+You can also access the project pitch video in the pitch folder.
 
 ## Problem Statement:
 Managing finances can be a daunting task for many individuals and businesses. The lack of a user-friendly and personalized solution often results in financial stress, confusion, and missed opportunities. There is a need for a comprehensive, multilingual financial assistant that simplifies the complexities of personal finance, making it accessible to a global audience.
@@ -40,7 +41,6 @@ Managing finances can be a daunting task for many individuals and businesses. Th
 ## Technologies Used:
 - Streamlit
 - OpenAI Assitance API
-- LangChain
 
 ## Data Types and Sources:
 - Financial transaction data provided by users (with user consent).

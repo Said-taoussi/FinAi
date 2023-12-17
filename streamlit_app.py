@@ -18,7 +18,7 @@ with st.sidebar:
     "---"
     "For GenAI competition judges, we have provided an API key in the form we sent you. You can also see an example conversation in the right side."
     openai_api_key = st.text_input("Mettez votre clé API OpenAI ici :", key="chatbot_api_key", type="password")
-    "[View the source code](https://github.com/eniafou/FinAi/blob/main/streamlit_app.py)"
+    "[Voir le code source](https://github.com/eniafou/FinAi/blob/main/streamlit_app.py)"
     "---"
     uploaded_file = st.file_uploader("Donnez un fichier à FinAi :", type=("c", "cpp", "csv", "docx", "html", "java", "json", "md", "pdf", "php", "pptx", "py", "py", "rb", "tex", "txt", "css", "jpeg", "jpg", "js", "gif", "png", "tar", "ts", "xlsx", "xml", "zip"))
 
