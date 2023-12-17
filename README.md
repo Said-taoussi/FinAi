@@ -38,7 +38,7 @@ Managing finances can be a daunting task for many individuals and businesses. Th
 
 
 ## Technologies Used:
-- Steamlit
+- Streamlit
 - OpenAI Assitance API
 - LangChain
 
