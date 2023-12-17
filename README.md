@@ -22,7 +22,7 @@ To use Mustashari on your machine you can …
 - Step 3: run the command "streamlit run streamlit _app.py"
 
 
-Or you can just click on [this link](https://eniafou-mustashari-streamlit-app-rw5r56.streamlit.app/) to use it on the web.
+Or you can just click on [this link](https://demvy3zxgiqv6o5wtjxx3s.streamlit.app/) to use it on the web.
 
 ## Architecture
 ![Flowchart](media/final_b.png)

@@ -1,8 +1,8 @@
 from openai import OpenAI
 import streamlit as st
 
-OPENAI_API_KEY = "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"
-avatar_dic = {"assistant": "🤖", "user": "🐶"}
+
+avatar_dic = {"assistant": "🤖", "user": "🧑‍🦱"}
 
 
 # the sidebar
@@ -13,18 +13,15 @@ with st.sidebar:
 
     """
 
-    openai_api_key = OPENAI_API_KEY#st.text_input("Put your OpenAI API Key here :", key="chatbot_api_key", type="password")
+    openai_api_key = st.text_input("Put your OpenAI API Key here :", key="chatbot_api_key", type="password")
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "---"
     uploaded_file = st.file_uploader("Upload a file", type=("c", "cpp", "docx", "html", "java", "json", "md", "pdf", "php", "pptx", "py", "py", "rb", "tex", "txt"))
 
-# def arabic_page():
-#     pass
 
-# def latin_page():
-#     pass
-
-
+if not openai_api_key:
+    st.info("Please add your OpenAI API key to continue.")
+    st.stop()
 
 @st.cache_data
 def initialize():
