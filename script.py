@@ -42,27 +42,28 @@ assistant_id, thread_id = initialize()
 client = OpenAI(api_key=openai_api_key)
 messages = client.beta.threads.messages.list(thread_id=thread_id)
 
-# def deal_with_annotations(message):
-#     message_content = message.content[0].text
-#     annotations = message_content.annotations
-#     citations = []
+def deal_with_annotations(content):
+    message_content = content.text
+    annotations = message_content.annotations
+    citations = []
+    i = 0
+    for annotation in annotations:
+        if annotation.type == "file_citation":
+            file_citation = annotation.file_citation
+            cited_file = client.files.retrieve(file_citation.file_id)
+            citations.append(f'[{i}] {file_citation.quote} from {cited_file.filename}')
+            message_content.value = message_content.value.replace(annotation.text, f' [{i}]')
+            i += 1
+        elif annotation.type == "file_path":
+            file_data = client.files.content(annotation.file_path.file_id)
+            file_data_bytes = file_data.read()
+            file_name = annotation.text.split("/")[-1]
+            with open('./' + file_name, "wb") as file:
+                file.write(file_data_bytes)
+                # st.download_button('Download file_name', file)
+            message_content.value = message_content.value.replace(annotation.text,"sandbox:/" + file_name)
 
-#     # Iterate over the annotations and add footnotes
-#     for index, annotation in enumerate(annotations):
-#         # Replace the text with a footnote
-#         message_content.value = message_content.value.replace(annotation.text, f' [{index}]')
-
-#         # Gather citations based on annotation attributes
-#         if (file_citation := getattr(annotation, 'file_citation', None)):
-#             cited_file = client.files.retrieve(file_citation.file_id)
-#             citations.append(f'[{index}] {file_citation.quote} from {cited_file.filename}')
-#         # elif (file_path := getattr(annotation, 'file_path', None)):
-#         #     cited_file = client.files.retrieve(file_path.file_id)
-#         #     citations.append(f'[{index}] Click <here> to download {cited_file.filename}')
-#         #     # Note: File download functionality not implemented above for brevity
-
-
-#     message_content.value += '\n' + '\n'.join(citations)
+    message_content.value += '\n\n' + '\n\n'.join(citations)
 
 for msg in messages.data[::-1]:
     if msg.role == "user":
@@ -75,24 +76,13 @@ for msg in messages.data[::-1]:
                     image_data_bytes = image_data.read()
                     st.image(image_data_bytes, caption='Image', use_column_width=True)
                 elif content.type =="text":
+                    deal_with_annotations(content)
                     st.write(content.text.value)
 
 if 'message_file' not in st.session_state:
     st.session_state.message_file = None
 
 
-# Text files
-
-text_contents = '''
-Foo, Bar
-123, 456
-789, 000
-'''
-
-# Different ways to use the API
-
-st.download_button('Download CSV', text_contents, 'text/csv')
-st.download_button('anotheroe', text_contents, 'text/csv')
         
 
 if prompt := st.chat_input():
@@ -143,6 +133,7 @@ if prompt := st.chat_input():
                         image_data_bytes = image_data.read()
                         st.image(image_data_bytes, caption='Image', use_column_width=True)
                     elif content.type == "text":
+                        deal_with_annotations(content)
                         st.write(content.text.value)
             
             break
