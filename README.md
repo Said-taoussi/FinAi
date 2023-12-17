@@ -8,7 +8,6 @@
 - [Objectives](#Objectives)
 - [Technologies Used](#Technologies-Used)
 - [Data Types and Sources](#Data-Types-and-Sources)
-- [GenAI Approach/Model](#GenAI-Approach/Model)
 - [Key Features](#Key-Features)
 
 ## About the project 
@@ -34,7 +33,7 @@ Managing finances can be a daunting task for many individuals and businesses. Th
 ## Objectives:
 - Provide users with a conversational and intuitive platform for managing their finances.
 - Simplify financial calculations, reporting, and analysis for users of varying levels of financial literacy.
-- Support multiple languages, including Arabic "Darija," French, and English, to cater to a diverse user base.
+- Support multiple languages, including Arabic Darija, French, and English, to cater to a diverse user base.
 - Offer a seamless and secure interaction with financial documents and reports.
 
 
@@ -55,7 +54,7 @@ Engage in natural conversations with FinAi to get financial advice and insights.
 ### Calculations and Analysis:
 Instantly calculate financial ratios, analyze spending patterns, and receive personalized recommendations.
 ### Multilingual Support:
-Seamlessly switch between Arabic "Darija," French, and English for a truly global financial experience.
+Seamlessly switch between Arabic Darija, French, and English for a truly global financial experience.
 ### Graphical Representation:
 Visualize financial data through interactive graphs, making complex information easy to understand.
 ### Document Interaction:
